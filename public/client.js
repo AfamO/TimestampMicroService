@@ -6,7 +6,7 @@
 
 $(function() {
   console.log('hello world :o');
-  console.log
+  console.log("Here we are")
   $.get('/dreams', function(dreams) {
     dreams.forEach(function(dream) {
       $('<li></li>').text(dream).appendTo('ul#dreams');

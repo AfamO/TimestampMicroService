@@ -14,9 +14,9 @@ app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
-  //response.sendFile(__dirname + '/views/index.html');
   var parsedUrl=url.parse(request.url, true);
   console.log("parsed url=="+parsedUrl);
+  response.sendFile(__dirname + '/views/index.html');
   var path=parsedUrl.pathname;
 });
 

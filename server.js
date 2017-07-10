@@ -16,7 +16,8 @@ app.use(express.static('public'));
 app.get("/", function (request, response) {
   var parsedUrl=url.parse(request.url, true);
   console.log("parsed url=="+parsedUrl);
-  response.sendFile(__dirname + '/views/index.html');
+  response.json(parsedUrl);
+  //response.end(__dirname + '/views/index.html');
   var path=parsedUrl.pathname;
 });
 

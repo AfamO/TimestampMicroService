@@ -19,9 +19,10 @@ app.get("/*", function (request, response) {
   var path=parsedUrl.pathname;
   var re=/%20/gi;
   path=path.replace("/","");
-  path=path.replace(re," ");
+  var pathParameter=path.replace(re," ");
   console.log("Replaced Path=="+path);
-  response.json(path);
+  if(new Date())
+  response.json(pathParameter);
   //response.end(__dirname + '/views/index.html');
   
 });

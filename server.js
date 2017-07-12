@@ -44,8 +44,8 @@ app.get("/*", function (request, response) {
     }
   else
     {
-      var unixtime = new Date().parse(pathParameter).getTime()/1000
-      json=getJson(new Date(pathParameter),pathParameter);
+      var unixtime = new Date(pathParameter).getTime()/1000
+      json=getJson(unixtime,pathParameter);
     }
   console.log("Replaced Path=="+path);
   if((new Date(pathParameter)).getTime() > 0)

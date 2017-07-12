@@ -13,12 +13,17 @@ var url=require('url');
 app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function (request, response) {
+app.get("/*", function (request, response) {
   var parsedUrl=url.parse(request.url, true);
   console.log("parsed url=="+parsedUrl);
-  response.json(parsedUrl);
-  //response.end(__dirname + '/views/index.html');
   var path=parsedUrl.pathname;
+  var re=/%20/gi;
+  path=path.replace("/","");
+  path=path.replace(re," ");
+  console.log("Replaced Path=="+path);
+  response.json(path);
+  //response.end(__dirname + '/views/index.html');
+  
 });
 
 app.get("/dreams", function (request, response) {

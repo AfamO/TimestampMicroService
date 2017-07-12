@@ -19,7 +19,15 @@ app.get("/*", function (request, response) {
   var path=parsedUrl.pathname;
   var re=/%20/gi;
   path=path.replace("/","");
+  var json={
+    unix:pathParameter,
+    natural:
+  };
   var pathParameter=path.replace(re," ");
+  if(isNaN(pathParameter)===false)
+    {
+       pathParameter=Number(pathParameter);
+    }
   console.log("Replaced Path=="+path);
   if((new Date(pathParameter)).getTime() > 0)
     {

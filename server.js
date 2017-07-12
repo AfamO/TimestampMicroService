@@ -21,8 +21,15 @@ app.get("/*", function (request, response) {
   path=path.replace("/","");
   var pathParameter=path.replace(re," ");
   console.log("Replaced Path=="+path);
-  if(new Date())
-  response.json(pathParameter);
+  if((new Date(pathParameter)).getTime() > 0)
+    {
+       response.end(pathParameter+ " is Valid")
+    }
+  else
+    {
+       response.end(pathParameter+ " is Not Valid")
+    }
+  //response.json(pathParameter);
   //response.end(__dirname + '/views/index.html');
   
 });

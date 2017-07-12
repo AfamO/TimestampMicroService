@@ -8,7 +8,22 @@ var url=require('url');
 
 // we've started you off with Express, 
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
-
+function getJson(unix,natural){
+  var json=null;
+  if(unix!==null && natural!==null){
+    json={
+    unix:unix,
+    natural:natural
+  };
+  }
+  if(unix===null && natural===null){
+    json={
+    unix:unix,
+    natural:natural
+  };
+  }
+  return json;
+}
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
@@ -19,14 +34,17 @@ app.get("/*", function (request, response) {
   var path=parsedUrl.pathname;
   var re=/%20/gi;
   path=path.replace("/","");
-  var json={
-    unix:pathParameter,
-    natural:
-  };
+  var json=null;
   var pathParameter=path.replace(re," ");
   if(isNaN(pathParameter)===false)
     {
+      
        pathParameter=Number(pathParameter);
+      json=getJson(pathParameter,natural)
+    }
+  else
+    {
+      
     }
   console.log("Replaced Path=="+path);
   if((new Date(pathParameter)).getTime() > 0)

@@ -40,22 +40,24 @@ app.get("/*", function (request, response) {
     {
       
        pathParameter=Number(pathParameter);
-      json=getJson(pathParameter,natural)
+      json=getJson(pathParameter,new Date(pathParameter));
     }
   else
     {
-      
+      var unixtime = new Date().parse(pathParameter).getTime()/1000
+      json=getJson(new Date(pathParameter),pathParameter);
     }
   console.log("Replaced Path=="+path);
   if((new Date(pathParameter)).getTime() > 0)
     {
-       response.end(pathParameter+ " is Valid")
+       response.json(json);
     }
   else
     {
-       response.end(pathParameter+ " is Not Valid")
+       json=getJson(null,null);
+       response.json(json);
     }
-  //response.json(pathParameter);
+  //
   //response.end(__dirname + '/views/index.html');
   
 });

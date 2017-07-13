@@ -40,6 +40,9 @@ app.get("/*", function (request, response) {
     {
       
        pathParameter=Number(pathParameter);
+      var t = new Date();
+      t.setSeconds( pathParameter);
+      var formattedDate = t.format("dd.mm.yyyy hh:MM:ss");
       json=getJson(pathParameter,new Date(pathParameter));
     }
   else

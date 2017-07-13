@@ -36,7 +36,10 @@ app.get("/*", function (request, response) {
   path=path.replace("/","");
   var json=null;
   var pathParameter=path.replace(re," ");
-  if((new Date(pathParameter)).getTime() > 0)
+  var valid = (new Date(pathParameter)).getTime();
+  json=getJson(unixtime,valid);
+  response.json(json);
+  if(valid)
     {
        if(isNaN(pathParameter)===false)
     {

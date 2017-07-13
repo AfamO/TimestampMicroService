@@ -36,22 +36,24 @@ app.get("/*", function (request, response) {
   path=path.replace("/","");
   var json=null;
   var pathParameter=path.replace(re," ");
-  var valid = 
-  if(valid)
+  if(pathParameter!==null && pathParameter!=="")
     {
        if(isNaN(pathParameter)===false)
     {
       var unix_timestamp=Number(pathParameter);
-      var date = new Date(unix_timestamp*1000);
-      // Hours part from the timestamp
-      var hours = date.getHours();
-      // Minutes part from the timestamp
-      var minutes = "0" + date.getMinutes();
-      // Seconds part from the timestamp
-      var seconds = "0" + date.getSeconds();
-      // Will display time in 10:30:23 format
-      var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-      json=getJson(pathParameter,formattedTime);
+      var date = new Date(unix_timestamp*1000), year = date.getFullYear(),
+    month = (date.getMonth() + 1).toString(),
+    formatedMonth = (month.length === 1) ? ("0" + month) : month,
+    day = date.getDate().toString(),
+    formatedDay = (day.length === 1) ? ("0" + day) : day,
+    hour = date.getHours().toString(),
+    formatedHour = (hour.length === 1) ? ("0" + hour) : hour,
+    minute = date.getMinutes().toString(),
+    formatedMinute = (minute.length === 1) ? ("0" + minute) : minute,
+    second = date.getSeconds().toString(),
+    formatedSecond = (second.length === 1) ? ("0" + second) : second;
+      var formattedDateTime = year+ "-" + formatedMonth + "-" + formatedDay + " " + formatedHour + ':' + formatedMinute+':'+formatedSecond;
+      json=getJson(pathParameter,formattedDateTime);
     }
   else
     {
@@ -65,7 +67,7 @@ app.get("/*", function (request, response) {
        
        json=getJson(null,null);
        response.json(json);
-    }
+ }
   //response.end(__dirname + '/views/index.html');
   
 });

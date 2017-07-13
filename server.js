@@ -36,9 +36,7 @@ app.get("/*", function (request, response) {
   path=path.replace("/","");
   var json=null;
   var pathParameter=path.replace(re," ");
-  var valid = (new Date(pathParameter)).getTime();
-  json=getJson(unixtime,valid);
-  response.json(json);
+  var valid = 
   if(valid)
     {
        if(isNaN(pathParameter)===false)
@@ -67,7 +65,6 @@ app.get("/*", function (request, response) {
        
        json=getJson(null,null);
        response.json(json);
-    
     }
   //response.end(__dirname + '/views/index.html');
   

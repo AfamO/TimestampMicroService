@@ -36,7 +36,9 @@ app.get("/*", function (request, response) {
   path=path.replace("/","");
   var json=null;
   var pathParameter=path.replace(re," ");
-  if(isNaN(pathParameter)===false)
+  if((new Date(pathParameter)).getTime() > 0)
+    {
+       if(isNaN(pathParameter)===false)
     {
       var unix_timestamp=Number(pathParameter);
       var date = new Date(unix_timestamp*1000);
@@ -55,17 +57,15 @@ app.get("/*", function (request, response) {
       var unixtime = new Date(pathParameter).getTime()/1000
       json=getJson(unixtime,pathParameter);
     }
-  console.log("Replaced Path=="+path);
-  if((new Date(pathParameter)).getTime() > 0)
-    {
        response.json(json);
     }
   else
     {
+       
        json=getJson(null,null);
        response.json(json);
+    
     }
-  //
   //response.end(__dirname + '/views/index.html');
   
 });
